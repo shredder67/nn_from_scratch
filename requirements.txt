@@ -1,0 +1,4 @@
+autograd
+numpy
+tqdm
+matplotlib

@@ -46,10 +46,6 @@ class RegressorModel():
         
         # ReLU(X @ W1) @ W2
         Z = matmul(H1, self.W2)
-
-        # ReLU(ReLU(X @ W1) @ W2)
-        for i in range(len(H1)):
-            relu(Z[i])
         
         # sum by row
         output = []
@@ -58,5 +54,14 @@ class RegressorModel():
         
         return output
 
+    def get_dims(self):
+        return self.n, self.d, self.k
+
     def __str__(self):
-        return  f"RegressorModel\n----------------\nW1{matshape(self.W1)}\nW2{matshape(self.W2)}\n"
+        if self.bias:
+            return  f"RegressorModel(bias=True)\n----------------\nW1{matshape(self.W1)})\nW2{matshape(self.W2)}\n"
+        else:
+            return  f"RegressorModel(bias=False)\n----------------\nW1{matshape(self.W1)}\nW2{matshape(self.W2)}\n"
+
+    def __repr__(self):
+        return self.__str__()
